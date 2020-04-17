@@ -61,7 +61,9 @@ float trace2(float ox, float oy, float dx, float dy) {
 float sample(float x, float y) {
 	float sum = 0.0f;
 	for (int i = 0; i < N; i++) {
-		float a = TWO_PI * rand() / RAND_MAX;
+		//float a = TWO_PI * rand() / RAND_MAX; //随机均匀采样
+		//float a = TWO_PI * i / N;	//分层采样
+		float a = TWO_PI * ((float)rand() / RAND_MAX + i) / N;	//抖动采样
 		sum += trace(x, y, cosf(a), sinf(a));
 		sum += trace2(x, y, cosf(a), sinf(a));
 	}
